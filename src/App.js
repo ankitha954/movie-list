@@ -8,7 +8,8 @@ const ImagesApi="https://image.tmdb.org/t/p/w1280";
 
   
 const App=()=> {
-  const[movies,setMovies]=useState([])
+  const   [movies,setMovies]=useState([])
+  const   [searchTerm,setSearchTerm]=useState("")
   useEffect(()=>{
     fetch(FeaturedApi)
     .then((res)=>res.json())
@@ -17,8 +18,32 @@ const App=()=> {
       setMovies(data.results)
     });
   },[])
+    
+  const handleSubmitchange=(e)=>{
+      e.preventDefault();
+      fetch(SearchApi+searchTerm)
+    .then((res)=>res.json())
+    .then((data)=>{
+     setMovies(data.results)
+     setSearchTerm("")
+    });
+    }
+  const handlechange=(e)=>{
+      setSearchTerm(e.target.value)
+  }
     return (
       <>
+      <h1 className='tag'>Movie List</h1>
+      <header>
+        <form onSubmit={handleSubmitchange}>
+        <input  type="search"
+         className='search' 
+         placeholder='Search...'
+         value={searchTerm}
+         onChange={handlechange}
+         ></input>
+        </form>
+      </header>
     <div className='movie-container'>
       {movies.map((movie)=><Movie key={movie.id} {...movie}/>)}
     </div>
