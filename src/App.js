@@ -35,6 +35,7 @@ const App=()=> {
       <>
       <h1 className='tag'>Movie List</h1>
       <header>
+        {/* <h1>movie list</h1> */}
         <form onSubmit={handleSubmitchange}>
         <input  type="search"
          className='search' 
