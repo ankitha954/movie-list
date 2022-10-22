@@ -21,6 +21,8 @@ header{
     text-align:center;
     justify-content: center;
     display: flex;
+    font-family: inherit;
+    font-size:24px;
 }
 .root{
     display: flex;
